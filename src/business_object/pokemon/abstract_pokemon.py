@@ -1,7 +1,6 @@
 import copy
 
 from abc import ABC, abstractmethod
-from typing import List
 
 from business_object.attack.abstract_attack import AbstractAttack
 from business_object.statistic import Statistic
@@ -21,7 +20,7 @@ class AbstractPokemon(ABC):
     _stat_current: Statistic
     _level: int
     _name: str | None
-    _common_attacks: List[AbstractAttack]
+    _common_attacks: list[AbstractAttack]
     _special_attack: AbstractAttack | None
 
     # -------------------------------------------------------------------------
@@ -35,7 +34,7 @@ class AbstractPokemon(ABC):
         stat_current: Statistic | None = None,
         level: int = 0,
         name: str | None = None,
-        common_attacks: List[AbstractAttack] = [],
+        common_attacks: list[AbstractAttack] = [],
         special_attack: AbstractAttack | None = None,
     ) -> None:
         # -----------------------------
@@ -72,14 +71,14 @@ class AbstractPokemon(ABC):
     def reset_actual_stat(self) -> None:
         self._stat_current = copy.deepcopy(self._stat_max)
 
-    def get_hit(self, damage):
+    def get_hit(self, damage: int) -> None:
         if damage > 0:
             if damage < self.hp_current:
                 self.hp_current -= damage
             else:
                 self.hp_current = 0
 
-    def __str__(self):
+    def __str__(self) -> str:
         res = "I am " + str(self.name)
         res += ", level : " + str(self.level)
         res += ", hp : " + str(self.hp_current)
@@ -174,7 +173,7 @@ class AbstractPokemon(ABC):
         self._id = value
 
     @property
-    def stat(self):
+    def stat(self) -> Statistic:
         return self.stat
 
     @property
@@ -186,7 +185,7 @@ class AbstractPokemon(ABC):
         return self._name
 
     @property
-    def common_attacks(self) -> List[AbstractAttack]:
+    def common_attacks(self) -> list[AbstractAttack]:
         return self._common_attacks
 
     @property

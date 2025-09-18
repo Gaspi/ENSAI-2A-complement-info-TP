@@ -45,7 +45,7 @@ class AbstractAttack(ABC):
         pass
 
     @property
-    def power(self) -> int | None:
+    def power(self) -> int:
         return self._power
 
     @property

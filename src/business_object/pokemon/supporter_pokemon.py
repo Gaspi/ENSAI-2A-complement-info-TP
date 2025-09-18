@@ -1,21 +1,23 @@
 from business_object.attack.special_attack import SpecialFormulaAttack
 from business_object.pokemon.abstract_pokemon import AbstractPokemon
+from business_object.attack.abstract_attack import AbstractAttack
+from business_object.statistic import Statistic
 
 
 class SupporterPokemon(AbstractPokemon):
     def __init__(
         self,
-        id=None,
-        stat_max=None,
-        stat_current=None,
-        level=None,
-        name=None,
-        common_attacks=[],
+        id: int | None = None,
+        stat_max: Statistic | None = None,
+        stat_current: Statistic | None = None,
+        level: int = 0,
+        name: str | None = None,
+        common_attacks: list[AbstractAttack] = [],
     ) -> None:
         special_attack = SpecialFormulaAttack(
             power=40,
             name="Healing Song",
-            description="{pokemon.name} sings a beautiful song ",
+            description="{pokemon.name} sings a beautiful song."
         )
 
         super().__init__(

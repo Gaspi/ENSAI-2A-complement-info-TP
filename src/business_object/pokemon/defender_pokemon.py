@@ -1,21 +1,23 @@
 from business_object.pokemon.abstract_pokemon import AbstractPokemon
 from business_object.attack.physical_attack import PhysicalFormulaAttack
+from business_object.attack.abstract_attack import AbstractAttack
+from business_object.statistic import Statistic
 
 
 class DefenderPokemon(AbstractPokemon):
     def __init__(
         self,
-        id=None,
-        stat_max=None,
-        stat_current=None,
-        level=0,
-        name=None,
-        common_attacks=[],
+        id: int | None = None,
+        stat_max: Statistic | None = None,
+        stat_current: Statistic | None = None,
+        level: int = 0,
+        name: str | None = None,
+        common_attacks: list[AbstractAttack] = [],
     ) -> None:
         special_attack = PhysicalFormulaAttack(
             power=60,
             name="Elbow tackle",
-            description="{pokemon} hits with a massive tackle.".format(pokemon=name),
+            description="{pokemon.name} hits with a massive tackle."
         )
 
         # Calling the parent class constructor

@@ -13,6 +13,6 @@ class Round:
     def __str__(self):
         res = "Attacker : " + str(self.attacker.name)
         res += ", Defender : " + str(self.defender.name)
-        res += " --- " + str(self.attack_description)
+        res += " --- " + self.attack_description.format(pokemon=self.attacker)
         res += ", damages : " + str(self.dealt_damage)
         return res

@@ -32,7 +32,7 @@ class Battle:
         res = f"Battle between {self.first_monstie.name} and {self.second_monstie.name}\n"
         for round_number, round in enumerate(self.rounds):
             res += f"Round {round_number} : {round}\n"
-        if self.winner:
+        if self.winner is not None:
             res += f"Winner : {self.winner.name}"
         return res
 
