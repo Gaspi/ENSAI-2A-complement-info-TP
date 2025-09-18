@@ -6,7 +6,7 @@ from business_object.pokemon.pokemon_factory import PokemonFactory
 from business_object.pokemon.abstract_pokemon import AbstractPokemon
 
 
-END_POINT = "/pokemon"
+END_POINT: str = "/pokemon"
 
 
 class PokemonClient:
@@ -15,11 +15,10 @@ class PokemonClient:
     def __init__(self) -> None:
         self.__HOST = os.environ["HOST_WEBSERVICE"]
 
-    def get_pokemon(self, pokemon_name: str) -> AbstractPokemon:
+    def get_pokemon(self, pokemon_name: str) -> AbstractPokemon | None:
         req = requests.get(f"{self.__HOST}{END_POINT}/{pokemon_name}")
 
         # Chek if the request is ok
-        pokemon = None
         if req.status_code == 200:
             raw_pkmn = req.json()
 
@@ -32,7 +31,7 @@ class PokemonClient:
                     attacks.append(attack)
 
             pkmn_factory = PokemonFactory()
-            pokemon = pkmn_factory.instantiate_pokemon(
+            return pkmn_factory.instantiate_pokemon(
                 type=raw_pkmn["pokemon_type"],
                 hp=raw_pkmn["statistic"]["hp"],
                 attack=raw_pkmn["statistic"]["attack"],
@@ -44,4 +43,5 @@ class PokemonClient:
                 name=raw_pkmn["name"],
                 common_attacks=attacks,
             )
-        return pokemon
+        else:
+            return None

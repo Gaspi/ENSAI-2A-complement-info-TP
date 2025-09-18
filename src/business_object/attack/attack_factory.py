@@ -10,12 +10,12 @@ class AttackFactory(metaclass=Singleton):
         self,
         type: str,
         id: int,
-        power: int = None,
-        name: str = None,
-        description: str = None,
-        accuracy: int = None,
-        element: str = None,
-    ) -> AbstractAttack:
+        power: int | None = None,
+        name: str | None = None,
+        description: str | None = None,
+        accuracy: int | None = None,
+        element: str | None = None,
+    ) -> AbstractAttack | None:
         """
         Instantiate an AbstractAttack based on the provided type
 
@@ -31,9 +31,8 @@ class AttackFactory(metaclass=Singleton):
         :return: the instantiate attack
         :rtype: AbstractAttack
         """
-        attack = None
         if type == "special attack":
-            attack = SpecialFormulaAttack(
+            return SpecialFormulaAttack(
                 id=id,
                 power=power,
                 name=name,
@@ -42,7 +41,7 @@ class AttackFactory(metaclass=Singleton):
                 element=element,
             )
         elif type == "physical attack":
-            attack = PhysicalFormulaAttack(
+            return PhysicalFormulaAttack(
                 id,
                 power=power,
                 name=name,
@@ -51,7 +50,7 @@ class AttackFactory(metaclass=Singleton):
                 element=element,
             )
         elif type == "fixed damage":
-            attack = FixedDamageAttack(
+            return FixedDamageAttack(
                 id,
                 power=power,
                 name=name,
@@ -59,4 +58,5 @@ class AttackFactory(metaclass=Singleton):
                 accuracy=accuracy,
                 element=element,
             )
-        return attack
+        else:
+            return None

@@ -14,7 +14,7 @@ class PokemonFactory(metaclass=Singleton):
     def instantiate_pokemon(
         self,
         type: str,
-        id: int = None,
+        id: int | None = None,
         hp: int = 0,
         attack: int = 0,
         defense: int = 0,
@@ -54,7 +54,7 @@ class PokemonFactory(metaclass=Singleton):
         """
 
         if type == "Supporter":
-            pokemon = SupporterPokemon(
+            return SupporterPokemon(
                 stat_max=Statistic(
                     hp=hp,
                     attack=attack,
@@ -77,7 +77,7 @@ class PokemonFactory(metaclass=Singleton):
                 common_attacks=common_attacks,
             )
         elif type == "Speedster":
-            pokemon = SpeedsterPokemon(
+            return SpeedsterPokemon(
                 stat_max=Statistic(
                     hp=hp,
                     attack=attack,
@@ -100,7 +100,7 @@ class PokemonFactory(metaclass=Singleton):
                 common_attacks=common_attacks,
             )
         elif type == "Attacker":
-            pokemon = AttackerPokemon(
+            return AttackerPokemon(
                 stat_max=Statistic(
                     hp=hp,
                     attack=attack,
@@ -123,7 +123,7 @@ class PokemonFactory(metaclass=Singleton):
                 common_attacks=common_attacks,
             )
         elif type == "Defender":
-            pokemon = DefenderPokemon(
+            return DefenderPokemon(
                 stat_max=Statistic(
                     hp=hp,
                     attack=attack,
@@ -146,7 +146,7 @@ class PokemonFactory(metaclass=Singleton):
                 common_attacks=common_attacks,
             )
         elif type == "All-Rounder":
-            pokemon = AllRounderPokemon(
+            return AllRounderPokemon(
                 stat_max=Statistic(
                     hp=hp,
                     attack=attack,
@@ -170,5 +170,3 @@ class PokemonFactory(metaclass=Singleton):
             )
         else:
             raise Exception(f"{type} n'est pas un type valide")
-
-        return pokemon

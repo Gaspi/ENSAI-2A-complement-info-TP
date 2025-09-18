@@ -1,7 +1,6 @@
 import os
 import requests
 
-from typing import List, Optional
 from business_object.attack.attack_factory import AttackFactory
 from business_object.attack.abstract_attack import AbstractAttack
 from utils.singleton import Singleton
@@ -14,7 +13,7 @@ class AttackClient(metaclass=Singleton):
         # Utilisation d'une variable d'environnement définie dans le fichier .env
         self.__HOST = os.environ["HOST_WEBSERVICE"]
 
-    def get_attack(self, id: int) -> Optional[AbstractAttack]:
+    def get_attack(self, id: int) -> AbstractAttack | None:
         """
         Get a specific attack from the webservice by calling the GET endpoint
         with a specific resource identifier.Do not raise any
@@ -45,7 +44,7 @@ class AttackClient(metaclass=Singleton):
 
         return attack
 
-    def get_all_attack(self, limit: int = 0, offset: int = 0) -> List[AbstractAttack]:
+    def get_all_attack(self, limit: int = 0, offset: int = 0) -> list[AbstractAttack]:
         """
         Get all attack of the webservice by calling the GET endpoint. If there
         is some umprocessable attack because of there type
@@ -56,7 +55,7 @@ class AttackClient(metaclass=Singleton):
         :param offset: the offset parameters of the endpoint, defaults to 0
         :type offset: int, optional
         :return: The list of all instanciated attack.
-        :rtype: List[AbstractAttack]
+        :rtype: list[AbstractAttack]
         """
         # Check if the limit and offset need to be used.
         params = {}
@@ -76,7 +75,7 @@ class AttackClient(metaclass=Singleton):
                 attack = attack_factory.instantiate_attack(
                     type=raw_attack["attack_type"],
                     id=raw_attack["id"],
-                    name=raw_attack["name"],
+                    name=raw_attack["name"]
                 )
                 if attack:
                     attacks.append(attack)

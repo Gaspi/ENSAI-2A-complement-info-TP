@@ -6,6 +6,8 @@ class FixedDamageAttack(AbstractAttack):
     _TYPE_NAME = "fixed damage"
 
     def compute_damage(
-        self, attacker: AbstractPokemon, defender: AbstractPokemon
+        self,
+        attacker: AbstractPokemon,
+        defender: AbstractPokemon
     ) -> int:
-        return self.power
+        return 0 if self.power is None else self.power

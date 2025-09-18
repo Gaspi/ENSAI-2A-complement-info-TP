@@ -1,4 +1,3 @@
-from typing import List, Optional
 from dao.db_connection import DBConnection
 from utils.singleton import Singleton
 
@@ -8,7 +7,7 @@ class TypeAttackDAO(metaclass=Singleton):
     Communicate with the attack_type table
     """
 
-    def find_all_attack_type(self) -> List[str]:
+    def find_all_attack_type(self) -> list[str]:
         """
         Get all attack type names and return a list
 
@@ -26,7 +25,7 @@ class TypeAttackDAO(metaclass=Singleton):
                 res = cursor.fetchall()
 
         # Create an empty list to store formatted results
-        type_attack: List[str] = []
+        type_attack: list[str] = []
 
         # if the SQL query returned results (ie. res not None)
         if res:
@@ -39,7 +38,7 @@ class TypeAttackDAO(metaclass=Singleton):
 
         return type_attack
 
-    def find_id_by_label(self, label: str) -> Optional[int]:
+    def find_id_by_label(self, label: str) -> int | None:
         """
         Get the id_attack_type from the label
         """
@@ -52,9 +51,7 @@ class TypeAttackDAO(metaclass=Singleton):
                     {"attack_name": label},
                 )
                 res = cursor.fetchone()
-
-        if res:
-            return res["id_attack_type"]
+        return res.get("id_attack_type") if res else None
 
 
 if __name__ == "__main__":

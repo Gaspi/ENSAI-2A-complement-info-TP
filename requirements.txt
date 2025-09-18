@@ -7,3 +7,6 @@ python-dotenv
 requests
 tabulate
 uvicorn
+mypy
+types-requests
+types-psycopg2

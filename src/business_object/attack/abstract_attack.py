@@ -1,22 +1,34 @@
 from abc import ABC, abstractmethod
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from business_object.pokemon.abstract_pokemon import AbstractPokemon
 
 
 class AbstractAttack(ABC):
+    _id: int | None
+    _power: int
+    _name: str | None
+    _description: str
+    _accuracy: int | None
+    _element: str | None
+    _TYPE_NAME: str
+
     def __init__(
         self,
-        id=None,
-        power: int = None,
-        name: str = None,
-        description: str = None,
-        accuracy: int = None,
-        element: str = None,
-    ):
+        id: int | None = None,
+        power: int | None = None,
+        name: str | None = None,
+        description: str | None = None,
+        accuracy: int | None = None,
+        element: str | None = None,
+    ) -> None:
         self._id = id
-        self._power = power
+        self._power = 0 if power is None else power
         self._name = name
-        self._description = description
-        self.accuracy = accuracy
-        self.element = element
+        self._description = "" if description is None else description
+        self._accuracy = accuracy
+        self._element = element
 
     @abstractmethod
     def compute_damage(
@@ -33,24 +45,32 @@ class AbstractAttack(ABC):
         pass
 
     @property
-    def power(self):
+    def power(self) -> int | None:
         return self._power
 
     @property
-    def name(self):
+    def name(self) -> str | None:
         return self._name
 
     @property
-    def description(self):
+    def description(self) -> str:
         return self._description
 
     @property
-    def id(self):
+    def id(self) -> int | None:
         return self._id
 
     @id.setter
-    def id(self, value):
+    def id(self, value: int) -> None:
         self._id = value
+
+    @property
+    def element(self) -> str | None:
+        return self._element
+
+    @property
+    def accuracy(self) -> int | None:
+        return self._accuracy
 
     @property
     def type(self):

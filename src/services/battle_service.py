@@ -38,9 +38,9 @@ class BattleService(metaclass=Singleton):
 
         # The battle only ends when a Pokemon is down
         while attacker.hp_current > 0 and defender.hp_current > 0:
-            attack_used = self.choose_attack(attacker)
+            attack_used: AbstractAttack = self.choose_attack(attacker)
 
-            damage = attack_used.compute_damage(attacker=attacker, defender=defender)
+            damage: int = attack_used.compute_damage(attacker=attacker, defender=defender)
 
             defender.get_hit(damage=damage)
 
@@ -103,7 +103,7 @@ class BattleService(metaclass=Singleton):
         """
 
         roll = random()
-        if roll < 0.75:
+        if roll < 0.75 or attacker.special_attack is None:
             selected_attack = choice(attacker.common_attacks)
         else:
             selected_attack = attacker.special_attack

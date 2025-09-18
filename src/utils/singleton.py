@@ -6,14 +6,14 @@ class Singleton(type):
     metaclass because it is best suited for this purpose.
     """
 
-    _instances = {}
+    _instances: dict[type, object] = {}
 
     def __call__(cls, *args, **kwargs):
         """
         Possible changes to the value of the `__init__` argument do not affect
         the returned instance.
         """
-        if cls not in cls._instances:
+        if cls not in Singleton._instances:
             instance = super().__call__(*args, **kwargs)
             cls._instances[cls] = instance
         return cls._instances[cls]
