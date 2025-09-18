@@ -11,7 +11,7 @@ class DBConnection(metaclass=Singleton):
     Technical class to open only one connection to the DB.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         dotenv.load_dotenv(override=True)
         # Open the connection.
         self.__connection = psycopg2.connect(

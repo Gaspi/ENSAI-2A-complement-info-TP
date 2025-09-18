@@ -22,7 +22,7 @@ class TestBattleService(TestCase):
             common_attacks=[
                 SpecialFormulaAttack(
                     power=30,
-                    description="{pokemon} fait tomber la foudre sur son adversaire",
+                    description="{pokemon.name} fait tomber la foudre sur son adversaire",
                     name="Tonnerre",
                 )
             ],
@@ -37,7 +37,7 @@ class TestBattleService(TestCase):
             common_attacks=[
                 PhysicalFormulaAttack(
                     power=30,
-                    description="{pokemon} plaque le pokemon au sol",
+                    description="{pokemon.name} plaque le pokemon au sol",
                     name="body_slam",
                 )
             ],
@@ -93,12 +93,12 @@ class TestBattleService(TestCase):
         # GIVEN
         tonnerre = SpecialFormulaAttack(
             power=30,
-            description="{pokemon} fait tomber la foudre sur son adversaire",
+            description="{pokemon.name} fait tomber la foudre sur son adversaire",
             name="Tonnerre",
         )
         vive_attaque = PhysicalFormulaAttack(
             power=35,
-            description="{pokemon} fonce sur l'ennemi si rapidement qu'on parvient à peine à le discerner.",
+            description="{pokemon.name} fonce sur l'ennemi si rapidement qu'on parvient à peine à le discerner.",
             name="Vive attaque",
         )
         pikachu = AttackerPokemon(
@@ -117,12 +117,12 @@ class TestBattleService(TestCase):
         # GIVEN
         tonnerre = SpecialFormulaAttack(
             power=30,
-            description="{pokemon} fait tomber la foudre sur son adversaire",
+            description="{pokemon.name} fait tomber la foudre sur son adversaire",
             name="Tonnerre",
         )
         vive_attaque = PhysicalFormulaAttack(
             power=35,
-            description="{pokemon} fonce sur l'ennemi si rapidement qu'on parvient à peine à le discerner.",
+            description="{pokemon.name} fonce sur l'ennemi si rapidement qu'on parvient à peine à le discerner.",
             name="Vive attaque",
         )
         pikachu = AttackerPokemon(

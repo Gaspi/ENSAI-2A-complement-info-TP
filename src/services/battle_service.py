@@ -1,5 +1,4 @@
 from random import randint, random, choice
-from typing import Tuple
 
 from business_object.attack.abstract_attack import AbstractAttack
 from business_object.battle.battle import Battle
@@ -60,7 +59,7 @@ class BattleService(metaclass=Singleton):
 
     def get_order(
         self, monstie_1: AbstractPokemon, monstie_2: AbstractPokemon
-    ) -> Tuple[AbstractPokemon, AbstractPokemon]:
+    ) -> tuple[AbstractPokemon, AbstractPokemon]:
         """
         Determine the first pokemon to attack.
         It compute a random int in [0; 50[ and add it to the pokemon speed.
@@ -70,7 +69,7 @@ class BattleService(metaclass=Singleton):
             monstie_2 (AbstractPokemon):
 
         Returns:
-            Tuple[AbstractPokemon, AbstractPokemon]: the order
+            tuple[AbstractPokemon, AbstractPokemon]: the order
         """
 
         speed_monstie1 = monstie_1.speed_current + randint(0, 50)
@@ -102,10 +101,8 @@ class BattleService(metaclass=Singleton):
             AbstractAttack : an attack
         """
 
-        roll = random()
+        roll: float = random()
         if roll < 0.75 or attacker.special_attack is None:
-            selected_attack = choice(attacker.common_attacks)
+            return choice(attacker.common_attacks)
         else:
-            selected_attack = attacker.special_attack
-
-        return selected_attack
+            return attacker.special_attack
