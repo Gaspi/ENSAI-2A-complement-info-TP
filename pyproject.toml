@@ -1,0 +1,25 @@
+[project]
+name = "ENSAI-2A-complement-info-TP"
+version = "0.0.1"
+description = "ENSAI-2A-complement-info-TP"
+readme = "README.md"
+authors = []
+license = { text = "MIT" }
+dependencies = [
+    "dataclasses",
+    "fastapi",
+    "inquirerPy",
+    "psycopg2-binary",
+    "pytest",
+    "python-dotenv",
+    "requests",
+    "tabulate",
+    "uvicorn",
+    "mypy",
+    "types-requests",
+    "types-psycopg2"
+]
+
+[tool.mypy]
+mypy_path = "src"
+explicit_package_bases = true
