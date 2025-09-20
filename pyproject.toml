@@ -39,3 +39,7 @@ exclude = "^build/"
 
 [tool.ruff]
 line-length = 120
+exclude = ["build"]
+
+[tool.ruff.lint]
+select = ["E", "F"]
