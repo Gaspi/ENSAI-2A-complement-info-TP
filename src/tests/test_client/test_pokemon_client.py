@@ -16,7 +16,7 @@ en entier, et ne pas vraiment le contacter pour éviter des problèmes de donné
 
 @mock.patch.dict(os.environ, {"HOST_WEBSERVICE": "http://web-services.domensai.ecole"})
 class TestPokemonClient:
-    def test_get_pikachu(self):
+    def test_get_pikachu(self) -> None:
         # GIVEN
         pokemon_name = "Pikachu"
         pokemon_client = PokemonClient()
@@ -25,10 +25,10 @@ class TestPokemonClient:
         pokemon = pokemon_client.get_pokemon(pokemon_name)
 
         # THEN
+        assert pokemon is not None
         assert pokemon_name == pokemon.name
 
 
 if __name__ == "__main__":
     import pytest
-
     pytest.main([__file__])

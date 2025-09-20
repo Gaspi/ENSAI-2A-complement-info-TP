@@ -14,9 +14,9 @@ class TestAbstractPokemon:
     # AbstractPokemon does not have any abstract method, so I can
     # create an instance and test my methode which is not abstract.
     @patch.multiple(AbstractPokemon, __abstractmethods__=set())
-    def test_level_up(self):
+    def test_level_up(self) -> None:
         # GIVEN
-        abstract_pokemon = AbstractPokemon(level=1)
+        abstract_pokemon = AbstractPokemon(level=1) # type: ignore[abstract]
 
         # WHEN
         abstract_pokemon.level_up()
@@ -25,7 +25,7 @@ class TestAbstractPokemon:
         assert abstract_pokemon.level == 2
 
     @patch.multiple(AbstractPokemon, __abstractmethods__=set())
-    def test_reset_actual_stat(self):
+    def test_reset_actual_stat(self) -> None:
         # GIVEN
         abstract_pokemon = AbstractPokemon(
             stat_max=Statistic(
@@ -34,7 +34,7 @@ class TestAbstractPokemon:
             stat_current=Statistic(
                 hp=0, attack=0, defense=0, sp_atk=0, sp_def=0, speed=0
             ),
-        )
+        ) # type: ignore[abstract]
         # WHEN
         abstract_pokemon.reset_actual_stat()
 
@@ -47,11 +47,11 @@ class TestAbstractPokemon:
         assert 15 == abstract_pokemon.speed_current
 
     @patch.multiple(AbstractPokemon, __abstractmethods__=set())
-    def test_get_hit_more_hp_than_damage(self):
+    def test_get_hit_more_hp_than_damage(self) -> None:
         # GIVEN
         hit_point = 100
         damage = 50
-        abstract_pokemon = AbstractPokemon(stat_current=Statistic(hp=hit_point))
+        abstract_pokemon = AbstractPokemon(stat_current=Statistic(hp=hit_point)) # type: ignore[abstract]
 
         # WHEN
         abstract_pokemon.get_hit(damage)
@@ -60,14 +60,19 @@ class TestAbstractPokemon:
         assert abstract_pokemon.hp_current == hit_point - damage
 
     @patch.multiple(AbstractPokemon, __abstractmethods__=set())
-    def test_get_hit_more_damage_than_hp(self):
+    def test_get_hit_more_damage_than_hp(self) -> None:
         # GIVEN
         damage = 100
         hit_point = 50
-        abstract_pokemon = AbstractPokemon(stat_current=Statistic(hp=hit_point))
+        abstract_pokemon = AbstractPokemon(stat_current=Statistic(hp=hit_point)) # type: ignore[abstract]
 
         # WHEN
         abstract_pokemon.get_hit(damage)
 
         # THEN
         assert abstract_pokemon.hp_current == 0
+
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__])

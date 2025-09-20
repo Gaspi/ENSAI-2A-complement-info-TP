@@ -3,7 +3,7 @@ from business_object.statistic import Statistic
 
 
 class TestAttackerPokemon:
-    def test_get_coef_damage_type(self):
+    def test_get_coef_damage_type(self) -> None:
         # GIVEN
         attack = 100
         speed = 100
@@ -14,3 +14,8 @@ class TestAttackerPokemon:
 
         # THEN
         assert multiplier == 2
+
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__])

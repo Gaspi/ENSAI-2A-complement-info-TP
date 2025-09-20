@@ -23,7 +23,7 @@ class PokemonFactory(metaclass=Singleton):
         speed: int = 0,
         level: int = 0,
         name: str = "",
-        common_attacks=[AbstractAttack],
+        common_attacks: list[AbstractAttack] = [],
     ) -> AbstractPokemon:
         """
         Instantiate a Pokemon of the good type based on the

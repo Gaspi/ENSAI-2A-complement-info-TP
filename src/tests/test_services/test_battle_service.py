@@ -11,7 +11,7 @@ from unittest import TestCase
 
 
 class TestBattleService(TestCase):
-    def test_resolve_battle(self):
+    def test_resolve_battle(self) -> None:
         # GIVEN
         pikachu = AttackerPokemon(
             level=10,
@@ -53,12 +53,12 @@ class TestBattleService(TestCase):
         self.assertEqual(0, snorlax.hp_current)
 
     @patch.multiple(AbstractPokemon, __abstractmethods__=set())
-    def test_get_order_no_draw(self):
+    def test_get_order_no_draw(self) -> None:
         # GIVEN
         speed_pikachu = 50
         speed_charizard = 40
-        pikachu = AbstractPokemon(stat_current=Statistic(speed=speed_pikachu))
-        charizard = AbstractPokemon(stat_current=Statistic(speed=speed_charizard))
+        pikachu = AbstractPokemon(stat_current=Statistic(speed=speed_pikachu)) # type: ignore[abstract]
+        charizard = AbstractPokemon(stat_current=Statistic(speed=speed_charizard)) # type: ignore[abstract]
 
         battle_service = BattleService()
         random.seed(1)  # les deux nombres générés seront 8 et 46
@@ -71,12 +71,12 @@ class TestBattleService(TestCase):
         self.assertEqual(pikachu, second)
 
     @patch.multiple(AbstractPokemon, __abstractmethods__=set())
-    def test_get_order_draw(self):
+    def test_get_order_draw(self) -> None:
         # GIVEN
         speed_pikachu = 50
         speed_charizard = 22
-        pikachu = AbstractPokemon(stat_current=Statistic(speed=speed_pikachu))
-        charizard = AbstractPokemon(stat_current=Statistic(speed=speed_charizard))
+        pikachu = AbstractPokemon(stat_current=Statistic(speed=speed_pikachu)) # type: ignore[abstract]
+        charizard = AbstractPokemon(stat_current=Statistic(speed=speed_charizard)) # type: ignore[abstract]
 
         battle_service = BattleService()
         # les deux nombres générés seront 8 et 36 (draw), 48 and 4
@@ -89,7 +89,7 @@ class TestBattleService(TestCase):
         self.assertEqual(pikachu, first)
         self.assertEqual(charizard, second)
 
-    def test_choose_attack_1(self):
+    def test_choose_attack_1(self) -> None:
         # GIVEN
         tonnerre = SpecialFormulaAttack(
             power=30,
@@ -113,7 +113,7 @@ class TestBattleService(TestCase):
         # THEN
         self.assertEqual(tonnerre, choosen_attack)
 
-    def test_choose_attack_special_attack(self):
+    def test_choose_attack_special_attack(self) -> None:
         # GIVEN
         tonnerre = SpecialFormulaAttack(
             power=30,
@@ -136,3 +136,8 @@ class TestBattleService(TestCase):
 
         # THEN
         self.assertEqual(pikachu.special_attack, choosen_attack)
+
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__])

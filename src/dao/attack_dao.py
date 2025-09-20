@@ -1,9 +1,7 @@
-from typing import List, Optional
 from dao.type_attack_dao import TypeAttackDAO
 from utils.singleton import Singleton
 from dao.db_connection import DBConnection
 from business_object.attack.abstract_attack import AbstractAttack
-from business_object.attack.attack_factory import AttackFactory
 
 
 class AttackDao(metaclass=Singleton):
@@ -18,8 +16,8 @@ class AttackDao(metaclass=Singleton):
         if id_attack_type is None:
             return created
 
-        with DBConnection().connection as connection:
-            with connection.cursor() as cursor:
+        with DBConnection().connection:
+            with DBConnection().cursor() as cursor:
                 cursor.execute(
                     "INSERT INTO tp.attack (id_attack_type, attack_name,        "
                     " power, accuracy, element, attack_description)             "

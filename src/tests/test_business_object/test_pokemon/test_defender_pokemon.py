@@ -3,7 +3,7 @@ from business_object.statistic import Statistic
 
 
 class TestDefenderPokemon:
-    def test_get_coef_damage_type(self):
+    def test_get_coef_damage_type(self) -> None:
         # GIVEN
         snorlax = DefenderPokemon(stat_current=Statistic(attack=100, defense=100))
 
@@ -16,5 +16,4 @@ class TestDefenderPokemon:
 
 if __name__ == "__main__":
     import pytest
-
     pytest.main([__file__])

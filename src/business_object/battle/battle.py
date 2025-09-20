@@ -53,7 +53,7 @@ class Battle:
         return self.__winner
 
     @winner.setter
-    def winner(self, value: AbstractPokemon):
+    def winner(self, value: AbstractPokemon) -> None:
         self.__winner = value
 
     @property
@@ -61,5 +61,5 @@ class Battle:
         return self.__final_phrase
 
     @final_phrase.setter
-    def final_phrase(self, value: str):
+    def final_phrase(self, value: str) -> None:
         self.__final_phrase = value

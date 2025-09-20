@@ -14,11 +14,13 @@ class TypeAttackDAO(metaclass=Singleton):
         :return: A list of all types
         :rtype: List of str
         """
-        with DBConnection().connection as connection:
-            with connection.cursor() as cursor:
+        with DBConnection().connection:
+            with DBConnection().cursor() as cursor:
                 cursor.execute(
-                    "SELECT *                                  "
-                    "  FROM tp.attack_type                     "
+                    """
+                    SELECT *
+                      FROM tp.attack_type
+                    """
                 )
 
                 # to store raw results
@@ -42,8 +44,8 @@ class TypeAttackDAO(metaclass=Singleton):
         """
         Get the id_attack_type from the label
         """
-        with DBConnection().connection as connection:
-            with connection.cursor() as cursor:
+        with DBConnection().connection:
+            with DBConnection().cursor() as cursor:
                 cursor.execute(
                     "SELECT id_attack_type                     "
                     "  FROM tp.attack_type                     "

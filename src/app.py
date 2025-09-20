@@ -6,12 +6,12 @@ app = FastAPI()
 
 
 @app.get("/hello")
-async def get_hello():
+async def get_hello() -> dict[str, str]:
     return {"message": "Hello World"}
 
 
 @app.get("/hello/{name}")
-async def get_hello_name(name: str):
+async def get_hello_name(name: str) -> dict[str, str]:
     return {"message": "Hello {}".format(name)}
 
 
@@ -30,13 +30,13 @@ character_id = 3  # Initial character ID
 
 # List all characters
 @app.get("/character/")
-def list_characters():
+def list_characters() -> Dict[int, Personnage]:
     return characters_db
 
 
 # Add a character
 @app.post("/character/")
-def create_character(character: Personnage):
+def create_character(character: Personnage) -> Personnage:
     global character_id
     characters_db[character_id] = character
     character_id += 1
@@ -45,7 +45,7 @@ def create_character(character: Personnage):
 
 # Update a character by ID
 @app.put("/character/{character_id}")
-def update_character(character_id: int, character: Personnage):
+def update_character(character_id: int, character: Personnage) -> Personnage:
     if character_id not in characters_db:
         raise HTTPException(status_code=404, detail="Character not found")
     characters_db[character_id] = character
@@ -54,7 +54,7 @@ def update_character(character_id: int, character: Personnage):
 
 # Delete a character by ID
 @app.delete("/character/{character_id}")
-def delete_character(character_id: int):
+def delete_character(character_id: int) -> Personnage:
     if character_id not in characters_db:
         raise HTTPException(status_code=404, detail="Character not found")
     deleted_character = characters_db.pop(character_id)

@@ -10,7 +10,7 @@ class Round:
     dealt_damage: int
     attack_description: str
 
-    def __str__(self):
+    def __str__(self) -> str:
         res = "Attacker : " + str(self.attacker.name)
         res += ", Defender : " + str(self.defender.name)
         res += " --- " + self.attack_description.format(pokemon=self.attacker)

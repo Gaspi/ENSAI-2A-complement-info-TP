@@ -3,7 +3,7 @@ from business_object.statistic import Statistic
 
 
 class TestAllRounderPokemon:
-    def test_get_coef_damage_type(self):
+    def test_get_coef_damage_type(self) -> None:
         # GIVEN
         spe_atk = 100
         spe_def = 100
@@ -16,3 +16,8 @@ class TestAllRounderPokemon:
 
         # THEN
         assert multiplier == 2
+
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__])

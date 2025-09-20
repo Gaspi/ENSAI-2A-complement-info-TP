@@ -3,7 +3,7 @@ from business_object.pokemon.attacker_pokemon import AttackerPokemon
 
 
 class TestFixedDamageAttack:
-    def test_compute_damage(self):
+    def test_compute_damage(self) -> None:
         # GIVEN
         power = 100
         basic_hit = FixedDamageAttack(power=power)
@@ -16,3 +16,8 @@ class TestFixedDamageAttack:
 
         # THEN
         assert power == damage
+
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__])

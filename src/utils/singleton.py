@@ -8,12 +8,11 @@ class Singleton(type):
 
     _instances: dict[type, object] = {}
 
-    def __call__(cls, *args, **kwargs):
+    def __call__(cls, *args, **kwargs): # type: ignore[no-untyped-def]
         """
         Possible changes to the value of the `__init__` argument do not affect
         the returned instance.
         """
         if cls not in Singleton._instances:
-            instance = super().__call__(*args, **kwargs)
-            cls._instances[cls] = instance
-        return cls._instances[cls]
+            Singleton._instances[cls] = super().__call__(*args, **kwargs)
+        return Singleton._instances[cls]

@@ -118,7 +118,7 @@ class AbstractPokemon(ABC):
         return self._stat_current.attack
 
     @attack_current.setter
-    def attack_current(self, value: int):
+    def attack_current(self, value: int) -> None:
         self._stat_current.attack = value
 
     @property
@@ -169,7 +169,7 @@ class AbstractPokemon(ABC):
         return self._id
 
     @id.setter
-    def id(self, value: int):
+    def id(self, value: int) -> None:
         self._id = value
 
     @property

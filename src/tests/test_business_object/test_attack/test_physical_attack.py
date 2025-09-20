@@ -6,7 +6,7 @@ from business_object.statistic import Statistic
 
 
 class TestPhysicalFormulaAttack:
-    def test_compute_damage(self):
+    def test_compute_damage(self) -> None:
         # GIVEN
         expected_damage = 87
         power = 100
@@ -30,7 +30,7 @@ class TestPhysicalFormulaAttack:
         # THEN
         assert damage == expected_damage
 
-    def test_get_defense_stat(self):
+    def test_get_defense_stat(self) -> None:
         # GIVEN
         defense = 10
         basic_hit = PhysicalFormulaAttack()
@@ -43,7 +43,7 @@ class TestPhysicalFormulaAttack:
         # THEN
         assert defense == defense_stat
 
-    def test_get_attack_stat(self):
+    def test_get_attack_stat(self) -> None:
         # GIVEN
         attack = 10
         basic_hit = PhysicalFormulaAttack()
@@ -55,3 +55,8 @@ class TestPhysicalFormulaAttack:
 
         # THEN
         assert attack == attack_stat
+
+
+if __name__ == "__main__":
+    import pytest
+    pytest.main([__file__])

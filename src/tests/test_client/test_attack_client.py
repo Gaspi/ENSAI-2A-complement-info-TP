@@ -18,7 +18,7 @@ en entier, et ne pas vraiment le contacter pour éviter des problèmes de donné
 
 @mock.patch.dict(os.environ, {"HOST_WEBSERVICE": "http://web-services.domensai.ecole"})
 class TestAttackClient:
-    def test_get_attack_ok(self):
+    def test_get_attack_ok(self) -> None:
         # GIVEN
         attack_id = 1
         attack_client = AttackClient()
@@ -27,9 +27,10 @@ class TestAttackClient:
         attack = attack_client.get_attack(attack_id)
 
         # THEN
+        assert attack is not None
         assert attack_id == attack.id
 
-    def test_get_attack_none(self):
+    def test_get_attack_none(self) -> None:
         # GIVEN
         attack_id = 99999999
         attack_client = AttackClient()
@@ -40,7 +41,7 @@ class TestAttackClient:
         # THEN
         assert attack is None
 
-    def test_get_all_attack_ok(self):
+    def test_get_all_attack_ok(self) -> None:
         # GIVEN
         attack_client = AttackClient()
 
@@ -50,7 +51,7 @@ class TestAttackClient:
         # THEN
         assert attacks is not None
 
-    def test_create_attack_ok(self):
+    def test_create_attack_ok(self) -> None:
         # GIVEN
         attack_client = AttackClient()
         attack = PhysicalFormulaAttack(
@@ -63,7 +64,7 @@ class TestAttackClient:
         # THEN
         assert created
 
-    def test_update_attack_ok(self):
+    def test_update_attack_ok(self) -> None:
         # GIVEN
         attack_client = AttackClient()
         attack = PhysicalFormulaAttack(
@@ -81,7 +82,7 @@ class TestAttackClient:
         # THEN
         assert updated
 
-    def test_delete_attack_ok(self):
+    def test_delete_attack_ok(self) -> None:
         # GIVEN
         attack_client = AttackClient()
         timestamp = time.time()
@@ -101,5 +102,4 @@ class TestAttackClient:
 
 if __name__ == "__main__":
     import pytest
-
     pytest.main([__file__])

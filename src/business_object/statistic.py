@@ -15,7 +15,7 @@ class Statistic:
                  defense: int = 0,
                  sp_atk: int = 0,
                  sp_def: int = 0,
-                 speed: int = 0):
+                 speed: int = 0) -> None:
         self.__hp = hp
         self.__attack = attack
         self.__defense = defense
@@ -28,7 +28,7 @@ class Statistic:
         return self.__hp
 
     @hp.setter
-    def hp(self, value: int):
+    def hp(self, value: int) -> None:
         self.__hp = value
 
     @property
@@ -36,7 +36,7 @@ class Statistic:
         return self.__attack
 
     @attack.setter
-    def attack(self, value: int):
+    def attack(self, value: int) -> None:
         self.__attack = value
 
     @property
@@ -44,7 +44,7 @@ class Statistic:
         return self.__defense
 
     @defense.setter
-    def defense(self, value: int):
+    def defense(self, value: int) -> None:
         self.__defense = value
 
     @property
@@ -52,7 +52,7 @@ class Statistic:
         return self.__sp_atk
 
     @sp_atk.setter
-    def sp_atk(self, value: int):
+    def sp_atk(self, value: int) -> None:
         self.__sp_atk = value
 
     @property
@@ -60,7 +60,7 @@ class Statistic:
         return self.__sp_def
 
     @sp_def.setter
-    def sp_def(self, value: int):
+    def sp_def(self, value: int) -> None:
         self.__sp_def = value
 
     @property
@@ -68,5 +68,5 @@ class Statistic:
         return self.__speed
 
     @speed.setter
-    def speed(self, value: int):
+    def speed(self, value: int) -> None:
         self.__speed = value

@@ -73,5 +73,5 @@ class AbstractAttack(ABC):
         return self._accuracy
 
     @property
-    def type(self):
+    def type(self) -> str:
         return self._TYPE_NAME

@@ -7,7 +7,7 @@ class ResetDatabase(metaclass=Singleton):
     Reinitialisation de la base de données
     """
 
-    def lancer(self):
+    def lancer(self) -> bool:
         print("Ré-initialisation de la base de données")
 
         init_db = open("data/init_db.sql", encoding="utf-8")

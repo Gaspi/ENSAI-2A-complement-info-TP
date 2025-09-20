@@ -1,10 +1,16 @@
 [project]
 name = "ENSAI-2A-complement-info-TP"
 version = "0.0.1"
-description = "ENSAI-2A-complement-info-TP"
+description = "TP - Complément informatique - ENSAI 2A"
 readme = "README.md"
-authors = []
-license = { text = "MIT" }
+authors = [
+  {name = "Rémi Pépin"},
+  {name = "Ludovic Deneuville"}
+]
+maintainers = [
+  {name = "Ludovic Deneuville"}
+]
+license = { file = "LICENSE" }
 dependencies = [
     "dataclasses",
     "fastapi",
@@ -16,10 +22,20 @@ dependencies = [
     "tabulate",
     "uvicorn",
     "mypy",
+    "ruff",
     "types-requests",
     "types-psycopg2"
 ]
 
+[project.urls]
+Repository = "https://github.com/ludo2ne/ENSAI-2A-complement-info-TP.git"
+Class = "http://ludo2ne.github.io/ENSAI-2A-Projet-info/"
+Datalab = "https://datalab.sspcloud.fr/"
+
 [tool.mypy]
 mypy_path = "src"
 explicit_package_bases = true
+exclude = "^build/"
+
+[tool.ruff]
+line-length = 120
